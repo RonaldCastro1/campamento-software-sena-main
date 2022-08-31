@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Bootcamp;
 use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\StoreBootcamRequest;
 
 class BootcampController extends Controller
 {
@@ -16,7 +18,7 @@ class BootcampController extends Controller
     {
         //Metodo json de los response trasmite en formato JSON
         //parametro:: datos a trasmitir, codiho HTTP del response
-        return response()->json(["success"=>true, "data"=>bootcamp::all()],200);
+        return response()->json(["success"=>true, "data"=>bootcamp::all()],201);
     }
 
     /**
@@ -25,9 +27,9 @@ class BootcampController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBootcamRequest $request)
     {
-        return response()->json(["success"=>true, "data"=>bootcamp::create($request->all())],200);        
+        return response()->json(["success"=>true, "data"=>bootcamp::create($request->all())],201);        
     }
 
     /**
@@ -38,7 +40,7 @@ class BootcampController extends Controller
      */
     public function show($id)
     {
-        return response()->json(["success"=>true, "data"=>bootcamp::find($id)],200);
+        return response()->json(["success"=>true, "data"=>bootcamp::find($id)],201);
     }
 
     /**
@@ -52,7 +54,7 @@ class BootcampController extends Controller
     {
         $b=Bootcamp::find($id);
         $b->update($request->all());
-        return response()->json(["success"=>true, "data"=> $b],200);
+        return response()->json(["success"=>true, "data"=> $b],201);
     }
 
     /**
@@ -65,6 +67,6 @@ class BootcampController extends Controller
     {
         $b=Bootcamp::find($id);
         $b->delete();
-        return response()->json(["success"=>true, "data"=>$b],200);
+        return response()->json(["success"=>true, "data"=>$b],201);
     }
 }
